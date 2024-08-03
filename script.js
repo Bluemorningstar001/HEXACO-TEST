@@ -31,11 +31,28 @@ function displayQuestions() {
         div.className = 'question';
         div.innerHTML = `
             <p>${q.question}</p>
-            <label><input type="radio" name="q${start + index}" value="5"> 매우 그렇다</label>
-            <label><input type="radio" name="q${start + index}" value="4"> 그렇다</label>
-            <label><input type="radio" name="q${start + index}" value="3"> 보통이다</label>
-            <label><input type="radio" name="q${start + index}" value="2"> 그렇지 않다</label>
-            <label><input type="radio" name="q${start + index}" value="1"> 전혀 그렇지 않다</label>
+            <div class="radio-buttons">
+                <label>
+                    매우 그렇다
+                    <input type="radio" name="q${start + index}" value="5">
+                </label>
+                <label>
+                    그렇다
+                    <input type="radio" name="q${start + index}" value="4">
+                </label>
+                <label>
+                    보통이다
+                    <input type="radio" name="q${start + index}" value="3">
+                </label>
+                <label>
+                    그렇지 않다
+                    <input type="radio" name="q${start + index}" value="2">
+                </label>
+                <label>
+                    전혀 그렇지 않다
+                    <input type="radio" name="q${start + index}" value="1">
+                </label>
+            </div>
         `;
         form.appendChild(div);
     });

@@ -1,34 +1,108 @@
-body {
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
     font-family: Arial, sans-serif;
+}
+
+/* 메인 페이지 배경 스타일 */
+.background {
+    background: url('images/background.png') no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
 }
 
-.container {
-    max-width: 600px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* 메인 페이지 콘텐츠 스타일 */
+.content {
     text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 3em;
+    margin: 0 0 20px;
+}
+
+.start-button {
+    font-size: 1.5em;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 25px;
+    background: #007BFF;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.5);
+    transition: background 0.3s ease;
+}
+
+.start-button:hover {
+    background: #0056b3;
+}
+
+/* 테스트 페이지 스타일 */
+.container {
+    text-align: center;
+    width: 80%;
+    max-width: 800px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
 .question {
-    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 30px; /* 질문과 질문 사이의 간격을 3배로 설정 */
 }
 
-.images-container {
+.radio-buttons {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
+    align-items: center;
+    margin-top: 10px; /* 질문과 라디오 버튼 사이의 간격을 조금 띄움 */
 }
 
-.images-container img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+.radio-buttons label {
+    font-size: 0.7em; /* 라디오 버튼 선택지 문자 크기를 60%로 낮춤 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.radio-buttons label input {
+    margin-top: 5px; /* 라디오 버튼을 라벨 텍스트 아래로 배치 */
+    transform: scale(1.5); /* 라디오 버튼 크기를 조정 */
+    cursor: pointer;
+    accent-color: blue; /* 라디오 버튼 색상을 녹색으로 변경 */
+}
+
+#next-button {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    background: #007BFF;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.5);
+    transition: background 0.3s ease;
+}
+
+#next-button:hover {
+    background: #0056b3;
 }
