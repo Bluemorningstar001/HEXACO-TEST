@@ -155,8 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
     const data = {
-        labels: ['정직-겸손', '감정성', '외향성', '우호성', '성실성', '경험에 대한 개방성'],
-        datasets: [{
+        labels: ['정직-겸손', '감정성', '외향성', '우호성', '성실성', '개방성'],
+        datasets: [{ 
             label: 'HEXACO 테스트 결과',
             data: [
                 results["정직-겸손"],
@@ -191,10 +191,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     suggestedMax: 7,
                     ticks: {
                         stepSize: 1,
-                        backdropColor: 'rgba(0, 0, 0, 0)', // 여기서 텍스트 배경을 투명하게 설정
-                        color: '#D3D3D3', // 여기서 텍스트 색상을 설정
+                        backdropColor: 'rgba(0, 0, 0, 0)',
+                        color: '#D3D3D3',
                         font: {
-                            size: 16 // 텍스트 크기 설정
+                            size: 16
                         },
                         callback: function(value, index, values) {
                             return value.toFixed(1);
@@ -202,9 +202,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     pointLabels: {
                         font: {
-                            size: 18 // 레이블 텍스트 크기 설정
+                            size: 18
                         },
-                        color: '#000000' // 레이블 텍스트 색상 설정 (예: tomato 색상)
+                        color: '#000000'
                     }
                 }
             },
@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 datalabels: {
                     color: '#000',
-                    backgroundColor: 'rgba(0, 0, 0, 0)', // 텍스트 배경 투명
+                    backgroundColor: 'rgba(0, 0, 0, 0)',
                     anchor: 'end',
                     align: 'top',
                     offset: 5,

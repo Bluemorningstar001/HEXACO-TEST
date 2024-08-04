@@ -222,3 +222,78 @@ h1.test-title {
     font-size: 1.1em;
     margin-bottom: 5px;
 }
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+    h1.main-title {
+        font-size: 2em;
+    }
+    
+    .start-button {
+        font-size: 1.2em;
+        padding: 8px 25px;
+    }
+    
+    h1.test-title {
+        font-size: 1.5em;
+        width: 80%;
+    }
+    
+    .question p {
+        font-size: 1em;
+    }
+    
+    .radio-buttons .label-text span {
+        font-size: 12px;
+    }
+    
+    #next-button {
+        font-size: 1em;
+        padding: 8px 15px;
+    }
+    
+    .results h2 {
+        font-size: 1.2em;
+    }
+    
+    .results p {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    h1.main-title {
+        font-size: 1.5em;
+    }
+    
+    .start-button {
+        font-size: 1em;
+        padding: 5px 20px;
+    }
+    
+    h1.test-title {
+        font-size: 1.2em;
+        width: 100%;
+    }
+    
+    .question p {
+        font-size: 0.9em;
+    }
+    
+    .radio-buttons .label-text span {
+        font-size: 10px;
+    }
+    
+    #next-button {
+        font-size: 0.9em;
+        padding: 5px 10px;
+    }
+    
+    .results h2 {
+        font-size: 1em;
+    }
+    
+    .results p {
+        font-size: 0.9em;
+    }
+}
