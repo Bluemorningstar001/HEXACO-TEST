@@ -2,12 +2,12 @@ let questions = [];
 const questionsPerPage = 5;
 let currentPage = 0;
 let scores = {
-    "Honesty-Humility": 0,
-    "Emotionality": 0,
-    "Extraversion": 0,
-    "Agreeableness": 0,
-    "Conscientiousness": 0,
-    "Openness to Experience": 0
+    "정직-겸손": 0,
+    "감정성": 0,
+    "외향성": 0,
+    "우호성": 0,
+    "성실성": 0,
+    "경험에 대한 개방성": 0
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             questions = data;
             displayQuestions();
         })
-        .catch(error => console.error('Error loading questions:', error));
+        .catch(error => console.error('질문을 불러오는 중 오류 발생:', error));
     
     document.getElementById('next-button').addEventListener('click', nextPage);
 });
@@ -52,6 +52,28 @@ function displayQuestions() {
         `;
         form.appendChild(div);
     });
+
+    addRadioListeners();
+}
+
+function addRadioListeners() {
+    const form = document.getElementById('quiz-form');
+    form.addEventListener('change', (event) => {
+        if (event.target.type === 'radio') {
+            const radioButtons = form.querySelectorAll('.radio-buttons input[type="radio"]');
+            radioButtons.forEach(radio => {
+                const circle = radio.nextElementSibling;
+                if (radio.checked) {
+                    const color = window.getComputedStyle(radio.closest('label').querySelector('.circle')).borderColor;
+                    circle.style.backgroundColor = color;
+                    circle.style.borderColor = color;
+                } else {
+                    circle.style.backgroundColor = '';
+                    circle.style.borderColor = '';
+                }
+            });
+        }
+    });
 }
 
 function nextPage() {
@@ -70,6 +92,7 @@ function nextPage() {
             questionElement.querySelector('p').style.color = 'black';
             const trait = questions[i].trait;
             scores[trait] += parseInt(answer);
+            console.log(`Question ${i + 1} answered: ${answer}, Trait: ${trait}, Current Score: ${scores[trait]}`);
         }
     }
 
@@ -86,9 +109,28 @@ function nextPage() {
 }
 
 function calculateResults() {
-    const totalQuestionsPerTrait = questions.length / Object.keys(scores).length;
+    const traitCounts = {
+        "정직-겸손": 0,
+        "감정성": 0,
+        "외향성": 0,
+        "우호성": 0,
+        "성실성": 0,
+        "경험에 대한 개방성": 0
+    };
+
+    questions.forEach(question => {
+        traitCounts[question.trait]++;
+    });
+
+    console.log("Trait Counts: ", traitCounts);
+
     for (let trait in scores) {
-        scores[trait] = totalQuestionsPerTrait > 0 ? (scores[trait] / totalQuestionsPerTrait).toFixed(2) : 0;
+        if (traitCounts[trait] > 0) {
+            scores[trait] = (scores[trait] / traitCounts[trait]).toFixed(2);
+        } else {
+            scores[trait] = 0;
+        }
+        console.log(`Trait: ${trait}, Total Score: ${scores[trait]}, Number of Questions: ${traitCounts[trait]}`);
     }
 
     localStorage.setItem('hexacoResults', JSON.stringify(scores));

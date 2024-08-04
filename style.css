@@ -3,9 +3,9 @@ body, html {
     padding: 0;
     height: 100%;
     font-family: Arial, sans-serif;
+    background-color: white; /* 흰색 배경으로 설정 */
 }
 
-/* 메인 페이지 배경 스타일 */
 .background {
     background: url('images/background.png') no-repeat center center fixed;
     background-size: cover;
@@ -15,7 +15,6 @@ body, html {
     align-items: center;
 }
 
-/* 메인 페이지 콘텐츠 스타일 */
 .content {
     text-align: center;
     background: rgba(255, 255, 255, 0.8);
@@ -45,13 +44,12 @@ h1.main-title {
     background: #0056b3;
 }
 
-/* 테스트 페이지 스타일 */
 .container {
     text-align: center;
     width: 90%;
     max-width: 800px;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.9);
+    background: linear-gradient(to bottom, rgb(254, 251, 231), rgb(254, 251, 231));
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     margin: 20px auto;
@@ -64,9 +62,15 @@ h1.main-title {
 h1.test-title {
     font-size: 2em;
     margin-bottom: 20px;
+    background: rgb(96, 183, 189); /* 박스 배경색 */
+    padding: 10px; /* 박스 내부 여백 */
+    border-radius: 10px; /* 박스 모서리 둥글게 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 박스 그림자 */
+    width: 50%; /* 박스 가로 길이 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+    color: rgb(254, 251, 231); /* 글자 색상 */
 }
 
-/* 질문 스타일 */
 .question {
     width: 100%;
     margin-bottom: 40px;
@@ -79,7 +83,6 @@ h1.test-title {
     text-align: left;
 }
 
-/* 라디오 버튼 그룹 스타일 */
 .radio-buttons {
     display: flex;
     flex-direction: column;
@@ -93,6 +96,15 @@ h1.test-title {
     justify-content: space-between;
     width: 100%;
     margin-bottom: 10px;
+    color: #000; /* 기본 텍스트 색상 */
+}
+
+.label-text span:first-child {
+    color: rgb(147, 195, 195); /* "그렇다" 텍스트 색상 */
+}
+
+.label-text span:last-child {
+    color: rgb(239, 189, 114); /* "그렇지 않다" 텍스트 색상 */
 }
 
 .button-container {
@@ -101,64 +113,77 @@ h1.test-title {
     width: 100%;
 }
 
-/* 라벨 스타일 */
 .radio-buttons label {
     display: flex;
     align-items: center;
     cursor: pointer;
 }
 
-/* 라디오 버튼 숨기기 */
 .radio-buttons input[type="radio"] {
     display: none;
 }
 
-/* 원형 버튼 스타일 */
 .radio-buttons .circle {
     border-radius: 50%;
-    border: 2px solid #ccc;
+    border: 2px solid; /* 테두리 색상 */
     display: inline-block;
     margin: 0 5px;
     transition: background-color 0.3s, border-color 0.3s;
+    background: none; /* 기본 배경 제거 */
 }
 
-/* 원형 버튼 크기 조정 */
-.radio-buttons .button-container label:nth-child(1) .circle,
-.radio-buttons .button-container label:nth-child(7) .circle {
+.radio-buttons .button-container label:nth-child(1) .circle {
     width: 24px;
     height: 24px;
+    border-color: rgb(147, 195, 195); /* "그렇다" 테두리 색상 */
 }
 
-.radio-buttons .button-container label:nth-child(2) .circle,
-.radio-buttons .button-container label:nth-child(6) .circle {
+.radio-buttons .button-container label:nth-child(2) .circle {
     width: 22px;
     height: 22px;
+    border-color: rgb(163, 182, 179); /* 그라데이션 중간 테두리 색상 */
 }
 
-.radio-buttons .button-container label:nth-child(3) .circle,
-.radio-buttons .button-container label:nth-child(5) .circle {
+.radio-buttons .button-container label:nth-child(3) .circle {
     width: 20px;
     height: 20px;
+    border-color: rgb(178, 169, 162); /* 그라데이션 중간 테두리 색상 */
 }
 
 .radio-buttons .button-container label:nth-child(4) .circle {
     width: 18px;
     height: 18px;
+    border-color: rgb(195, 156, 145); /* 그라데이션 중간 테두리 색상 */
 }
 
-/* 선택된 원형 버튼 스타일 */
+.radio-buttons .button-container label:nth-child(5) .circle {
+    width: 20px;
+    height: 20px;
+    border-color: rgb(211, 143, 128); /* 그라데이션 중간 테두리 색상 */
+}
+
+.radio-buttons .button-container label:nth-child(6) .circle {
+    width: 22px;
+    height: 22px;
+    border-color: rgb(227, 130, 111); /* 그라데이션 중간 테두리 색상 */
+}
+
+.radio-buttons .button-container label:nth-child(7) .circle {
+    width: 24px;
+    height: 24px;
+    border-color: rgb(239, 189, 114); /* "그렇지 않다" 테두리 색상 */
+}
+
 .radio-buttons input[type="radio"]:checked + .circle {
-    background-color: #007BFF;
-    border-color: #007BFF;
+    background-color: currentColor;
+    border-color: currentColor;
 }
 
-/* 라벨 텍스트 스타일 */
 .radio-buttons .label-text span {
     font-size: 14px;
     font-weight: bold;
 }
 
-/* 기존 스타일 오버라이드 */
 .radio-buttons label span {
     display: none;
 }
@@ -167,25 +192,23 @@ h1.test-title {
     display: none;
 }
 
-/* 다음 버튼 스타일 */
 #next-button {
     font-size: 1.2em;
     padding: 10px 20px;
     border: none;
     border-radius: 25px;
-    background: #007BFF;
+    background: rgb(147, 195, 195);
     color: white;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 4px 6px rgba(3, 8, 41, 0.5);
     transition: background 0.3s ease;
     margin-top: 20px;
 }
 
 #next-button:hover {
-    background: #0056b3;
+    background: rgb(239, 189, 114);
 }
 
-/* 결과 페이지 스타일 (필요한 경우) */
 .results {
     margin-top: 20px;
 }

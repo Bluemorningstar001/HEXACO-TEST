@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HEXACO 성격 테스트 결과</title>
+    <title>HEXACO 성격 검사 결과</title>
     <link rel="stylesheet" href="results.css">
-    <!-- Google AdSense 자동광고 코드 추가 -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2988937021017804" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 </head>
 <body>
-    <div id="result-container"></div>
-    <canvas id="hexacoChart"></canvas>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <div class="container">
+        <h1>HEXACO 성격 검사 결과</h1>
+        <div id="result-container"></div>
+        <canvas id="hexacoChart" style="max-width: 600px; max-height: 400px;"></canvas>
+    </div>
     <script src="results.js"></script>
 </body>
 </html>
