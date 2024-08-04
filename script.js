@@ -86,9 +86,9 @@ function nextPage() {
 }
 
 function calculateResults() {
-    const totalQuestionsPerTrait = 10;
+    const totalQuestionsPerTrait = questions.length / Object.keys(scores).length;
     for (let trait in scores) {
-        scores[trait] = (scores[trait] / totalQuestionsPerTrait).toFixed(2);
+        scores[trait] = totalQuestionsPerTrait > 0 ? (scores[trait] / totalQuestionsPerTrait).toFixed(2) : 0;
     }
 
     localStorage.setItem('hexacoResults', JSON.stringify(scores));
