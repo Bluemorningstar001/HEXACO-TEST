@@ -33,15 +33,15 @@ h1.main-title {
     padding: 10px 30px;
     border: none;
     border-radius: 25px;
-    background: #007BFF;
+    background: #268876;
     color: white;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 4px 6px rgba(10, 78, 88, 0.5);
     transition: background 0.3s ease;
 }
 
 .start-button:hover {
-    background: #0056b3;
+    background: #d96716;
 }
 
 .container {
