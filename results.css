@@ -62,7 +62,7 @@ button {
     margin-top: 20px;
     cursor: pointer;
     border: none;
-    background-color: #007BFF;
+    background-color: #58abae;
     color: white;
     border-radius: 5px;
     display: flex;
@@ -72,7 +72,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #69beaa;
 }
 
 .share-icon {
@@ -101,7 +101,7 @@ button:hover {
 }
 
 .popup button#copy-url-button {
-    background-color: #4CAF50;
+    background-color: #4c9a8d;
     color: white;
 }
 
@@ -110,12 +110,12 @@ button:hover {
 }
 
 .popup button#save-image-button {
-    background-color: #008CBA;
+    background-color: #2a88a7;
     color: white;
 }
 
 .popup button#save-image-button:hover {
-    background-color: #007bb5;
+    background-color: #6bc3ec;
 }
 
 #overlay {
