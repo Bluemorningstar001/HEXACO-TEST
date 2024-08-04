@@ -183,8 +183,12 @@ document.addEventListener('DOMContentLoaded', () => {
         type: 'radar',
         data: data,
         options: {
-            scale: {
-                ticks: { beginAtZero: true }
+            maintainAspectRatio: true,
+            aspectRatio: 1,
+            scales: {
+                r: {
+                    ticks: { beginAtZero: true }
+                }
             }
         }
     };
