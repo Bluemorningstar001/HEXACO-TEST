@@ -235,8 +235,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.getElementById('share-button').addEventListener('click', () => {
-        const baseUrl = window.location.origin + window.location.pathname;
-        const shareUrl = `${baseUrl}?results=${btoa(JSON.stringify(results))}`;
+        // 수정된 부분: URL 복사 주소를 메인 index.html로 설정
+        const baseUrl = window.location.origin + window.location.pathname.replace('result.html', 'index.html');
+        const shareUrl = `${baseUrl}`;
         const sharePopup = document.getElementById('share-popup');
         sharePopup.style.display = 'block';
 
@@ -252,15 +253,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const backButton = document.getElementById('back-to-index-button');
             const shareButton = document.getElementById('share-button');
             const sharePopup = document.getElementById('share-popup');
-    
+
             // 버튼들을 숨기기
             backButton.style.display = 'none';
             shareButton.style.display = 'none';
             sharePopup.style.display = 'none';
-    
+
             // DOM 업데이트를 위한 지연
             await new Promise(resolve => setTimeout(resolve, 100));
-    
+
             try {
                 const canvas = await html2canvas(document.body, {
                     ignoreElements: (element) => {
@@ -270,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                element.id === 'share-popup';
                     }
                 });
-    
+
                 // 이미지 다운로드
                 const link = document.createElement('a');
                 link.download = 'hexaco_result.png';
