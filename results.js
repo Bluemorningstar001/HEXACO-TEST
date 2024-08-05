@@ -234,65 +234,68 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Chart.js or ChartDataLabels plugin not loaded');
     }
 
-    document.getElementById('share-button').addEventListener('click', () => {
-        // 수정된 부분: URL 복사 주소를 메인 index.html로 설정
+    const shareButton = document.getElementById('share-button');
+    const copyUrlButton = document.getElementById('copy-url-button');
+    const saveImageButton = document.getElementById('save-image-button');
+    const closeSharePopupButton = document.getElementById('close-share-popup');
+    const backButton = document.getElementById('back-to-index-button');
+
+    // URL 복사 이벤트 리스너 추가 (중복 방지)
+    shareButton.addEventListener('click', () => {
         const baseUrl = window.location.origin + window.location.pathname.replace('result.html', 'index.html');
         const shareUrl = `${baseUrl}`;
         const sharePopup = document.getElementById('share-popup');
         sharePopup.style.display = 'block';
 
-        document.getElementById('copy-url-button').addEventListener('click', () => {
+        copyUrlButton.onclick = () => {
             navigator.clipboard.writeText(shareUrl).then(() => {
                 alert('URL이 복사되었습니다.');
             }).catch(err => {
                 console.error('URL 복사 실패', err);
             });
-        });
-
-        document.getElementById('save-image-button').addEventListener('click', async () => {
-            const backButton = document.getElementById('back-to-index-button');
-            const shareButton = document.getElementById('share-button');
-            const sharePopup = document.getElementById('share-popup');
-
-            // 버튼들을 숨기기
-            backButton.style.display = 'none';
-            shareButton.style.display = 'none';
-            sharePopup.style.display = 'none';
-
-            // DOM 업데이트를 위한 지연
-            await new Promise(resolve => setTimeout(resolve, 100));
-
-            try {
-                const canvas = await html2canvas(document.body, {
-                    ignoreElements: (element) => {
-                        // 특정 요소들을 캡처에서 제외
-                        return element.id === 'back-to-index-button' || 
-                               element.id === 'share-button' || 
-                               element.id === 'share-popup';
-                    }
-                });
-
-                // 이미지 다운로드
-                const link = document.createElement('a');
-                link.download = 'hexaco_result.png';
-                link.href = canvas.toDataURL();
-                link.click();
-            } catch (error) {
-                console.error('이미지 캡처 중 오류 발생:', error);
-                alert('이미지 저장 중 오류가 발생했습니다.');
-            } finally {
-                // 버튼들을 다시 표시
-                backButton.style.display = 'block';
-                shareButton.style.display = 'block';
-            }
-        });
+        };
     });
 
-    document.getElementById('close-share-popup').addEventListener('click', () => {
+    // 이미지 저장 이벤트 리스너 추가 (중복 방지)
+    saveImageButton.addEventListener('click', async () => {
+        backButton.style.display = 'none';
+        shareButton.style.display = 'none';
+        const sharePopup = document.getElementById('share-popup');
+        sharePopup.style.display = 'none';
+
+        // DOM 업데이트를 위한 지연
+        await new Promise(resolve => setTimeout(resolve, 100));
+
+        try {
+            const canvas = await html2canvas(document.body, {
+                ignoreElements: (element) => {
+                    return element.id === 'back-to-index-button' || 
+                           element.id === 'share-button' || 
+                           element.id === 'share-popup';
+                }
+            });
+
+            // 이미지 다운로드
+            const link = document.createElement('a');
+            link.download = 'hexaco_result.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        } catch (error) {
+            console.error('이미지 캡처 중 오류 발생:', error);
+            alert('이미지 저장 중 오류가 발생했습니다.');
+        } finally {
+            backButton.style.display = 'block';
+            shareButton.style.display = 'block';
+        }
+    });
+
+    // 공유 팝업 닫기 이벤트 리스너 추가 (중복 방지)
+    closeSharePopupButton.addEventListener('click', () => {
         document.getElementById('share-popup').style.display = 'none';
     });
 
-    document.getElementById('back-to-index-button').addEventListener('click', () => {
+    // 메인 페이지로 돌아가기 버튼 이벤트 리스너 추가 (중복 방지)
+    backButton.addEventListener('click', () => {
         window.location.href = 'index.html';
     });
 });
