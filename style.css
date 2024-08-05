@@ -3,227 +3,142 @@ body, html {
     padding: 0;
     height: 100%;
     font-family: Arial, sans-serif;
-    background-color: white; /* 흰색 배경으로 설정 */
+    background-color: transparent;
+    text-align: center;
 }
 
-.background {
-    background: url('images/background.png') no-repeat center center fixed;
-    background-size: cover;
+.slideshow {
+    position: fixed;
+    width: 100%;
     height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.slideshow-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out;
+}
+
+.banner {
+    background: url('images/banner.png') no-repeat center center;
+    background-size: cover;
+    height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+}
+
+h1.main-title {
+    font-size: 5em;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .content {
     text-align: center;
-    background: rgba(255, 255, 255, 0.8);
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-h1.main-title {
-    font-size: 3em;
-    margin: 0 0 20px;
 }
 
 .start-button {
-    font-size: 1.5em;
-    padding: 10px 30px;
+    font-size: 2em;
+    padding: 20px 50px;
     border: none;
-    border-radius: 25px;
+    border-radius: 10px;
     background: #268876;
     color: white;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(10, 78, 88, 0.5);
     transition: background 0.3s ease;
+    margin-bottom: 20px;
 }
 
 .start-button:hover {
     background: #d96716;
 }
 
-.container {
-    text-align: center;
-    width: 90%;
+.description {
     max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
-    background: linear-gradient(to bottom, rgb(254, 251, 231), rgb(254, 251, 231));
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
-    margin: 20px auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.description h2 {
+    text-align: center;
+    color: #268876;
+}
+
+.description h3 {
+    color: #268876;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-h1.test-title {
-    font-size: 2em;
+.description h3 .icon {
+    width: 80px;
+    height: 80px;
+    margin-left: 10px;
+}
+
+.description p {
     margin-bottom: 20px;
-    background: rgb(96, 183, 189); /* 박스 배경색 */
-    padding: 10px; /* 박스 내부 여백 */
-    border-radius: 10px; /* 박스 모서리 둥글게 */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 박스 그림자 */
-    width: 50%; /* 박스 가로 길이 설정 */
-    margin: 0 auto; /* 가운데 정렬 */
-    color: rgb(254, 251, 231); /* 글자 색상 */
+    line-height: 1.6;
+    text-align: center;
 }
 
-.question {
-    width: 100%;
-    margin-bottom: 40px;
+.description-image {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    height: auto;
 }
 
-.question p {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-    font-weight: bold;
-    text-align: left;
-}
-
-.radio-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px 0;
-    width: 100%;
-}
-
-.label-text {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 10px;
-    color: #000; /* 기본 텍스트 색상 */
-}
-
-.label-text span:first-child {
-    color: rgb(147, 195, 195); /* "그렇다" 텍스트 색상 */
-}
-
-.label-text span:last-child {
-    color: rgb(239, 189, 114); /* "그렇지 않다" 텍스트 색상 */
-}
-
-.button-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.radio-buttons label {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-.radio-buttons input[type="radio"] {
-    display: none;
-}
-
-.radio-buttons .circle {
+.icon {
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    border: 2px solid; /* 테두리 색상 */
-    display: inline-block;
-    margin: 0 5px;
-    transition: background-color 0.3s, border-color 0.3s;
-    background: none; /* 기본 배경 제거 */
-}
-
-.radio-buttons .button-container label:nth-child(1) .circle {
-    width: 24px;
-    height: 24px;
-    border-color: rgb(147, 195, 195); /* "그렇다" 테두리 색상 */
-}
-
-.radio-buttons .button-container label:nth-child(2) .circle {
-    width: 22px;
-    height: 22px;
-    border-color: rgb(163, 182, 179); /* 그라데이션 중간 테두리 색상 */
-}
-
-.radio-buttons .button-container label:nth-child(3) .circle {
-    width: 20px;
-    height: 20px;
-    border-color: rgb(178, 169, 162); /* 그라데이션 중간 테두리 색상 */
-}
-
-.radio-buttons .button-container label:nth-child(4) .circle {
-    width: 18px;
-    height: 18px;
-    border-color: rgb(195, 156, 145); /* 그라데이션 중간 테두리 색상 */
-}
-
-.radio-buttons .button-container label:nth-child(5) .circle {
-    width: 20px;
-    height: 20px;
-    border-color: rgb(211, 143, 128); /* 그라데이션 중간 테두리 색상 */
-}
-
-.radio-buttons .button-container label:nth-child(6) .circle {
-    width: 22px;
-    height: 22px;
-    border-color: rgb(227, 130, 111); /* 그라데이션 중간 테두리 색상 */
-}
-
-.radio-buttons .button-container label:nth-child(7) .circle {
-    width: 24px;
-    height: 24px;
-    border-color: rgb(239, 189, 114); /* "그렇지 않다" 테두리 색상 */
-}
-
-.radio-buttons input[type="radio"]:checked + .circle {
-    background-color: currentColor;
-    border-color: currentColor;
-}
-
-.radio-buttons .label-text span {
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.radio-buttons label span {
-    display: none;
-}
-
-.radio-buttons label:not(:first-child):not(:last-child) span {
-    display: none;
-}
-
-#next-button {
-    font-size: 1.2em;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 25px;
-    background: rgb(147, 195, 195);
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(3, 8, 41, 0.5);
-    transition: background 0.3s ease;
-    margin-top: 20px;
-}
-
-#next-button:hover {
-    background: rgb(239, 189, 114);
-}
-
-.results {
-    margin-top: 20px;
-}
-
-.results h2 {
-    font-size: 1.5em;
+    object-fit: cover;
     margin-bottom: 10px;
 }
 
-.results p {
-    font-size: 1.1em;
-    margin-bottom: 5px;
+.character-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 20px auto;
+    display: block;
 }
 
-/* 반응형 스타일 */
+.stats {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    text-align: right;
+}
+
+.stats p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
 @media (max-width: 768px) {
     h1.main-title {
         font-size: 2em;
@@ -234,30 +149,26 @@ h1.test-title {
         padding: 8px 25px;
     }
     
-    h1.test-title {
+    .description {
+        padding: 15px;
+    }
+    
+    .description h2 {
         font-size: 1.5em;
-        width: 80%;
     }
     
-    .question p {
-        font-size: 1em;
-    }
-    
-    .radio-buttons .label-text span {
-        font-size: 12px;
-    }
-    
-    #next-button {
-        font-size: 1em;
-        padding: 8px 15px;
-    }
-    
-    .results h2 {
+    .description h3 {
         font-size: 1.2em;
     }
     
-    .results p {
+    .description p {
         font-size: 1em;
+    }
+
+    .stats {
+        position: static;
+        margin-top: 20px;
+        text-align: center;
     }
 }
 
@@ -271,29 +182,19 @@ h1.test-title {
         padding: 5px 20px;
     }
     
-    h1.test-title {
+    .description {
+        padding: 10px;
+    }
+    
+    .description h2 {
         font-size: 1.2em;
-        width: 100%;
     }
     
-    .question p {
-        font-size: 0.9em;
-    }
-    
-    .radio-buttons .label-text span {
-        font-size: 10px;
-    }
-    
-    #next-button {
-        font-size: 0.9em;
-        padding: 5px 10px;
-    }
-    
-    .results h2 {
+    .description h3 {
         font-size: 1em;
     }
     
-    .results p {
+    .description p {
         font-size: 0.9em;
     }
 }
