@@ -137,10 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sortedTraits = Object.keys(results).sort((a, b) => results[b] - results[a]);
     const topTraits = sortedTraits.slice(0, 2);
 
-    let matchedType = personalityTypes.find(type => {
-        return type.traits.every(trait => topTraits.includes(trait));
-    });
-
+    let matchedType = personalityTypes.find(type => type.traits.every(trait => topTraits.includes(trait)));
     if (!matchedType) {
         matchedType = personalityTypes[0];
     }
@@ -156,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const data = {
         labels: ['정직-겸손', '감정성', '외향성', '우호성', '성실성', '개방성'],
-        datasets: [{ 
+        datasets: [{
             label: 'HEXACO 테스트 결과',
             data: [
                 results["정직-겸손"],
@@ -184,34 +181,24 @@ document.addEventListener('DOMContentLoaded', () => {
             maintainAspectRatio: true,
             scales: {
                 r: {
-                    angleLines: {
-                        display: true
-                    },
+                    angleLines: { display: true },
                     suggestedMin: 0,
                     suggestedMax: 7,
                     ticks: {
                         stepSize: 1,
                         backdropColor: 'rgba(0, 0, 0, 0)',
                         color: '#D3D3D3',
-                        font: {
-                            size: 16
-                        },
-                        callback: function(value, index, values) {
-                            return value.toFixed(1);
-                        }
+                        font: { size: 16 },
+                        callback: function(value) { return value.toFixed(1); }
                     },
                     pointLabels: {
-                        font: {
-                            size: 18
-                        },
+                        font: { size: 18 },
                         color: '#000000'
                     }
                 }
             },
             plugins: {
-                legend: {
-                    display: false
-                },
+                legend: { display: false },
                 tooltip: {
                     enabled: true,
                     callbacks: {
@@ -226,15 +213,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     anchor: 'end',
                     align: 'top',
                     offset: 5,
-                    font: {
-                        weight: 'bold'
-                    },
-                    formatter: function(value, context) {
-                        if (typeof value === 'number') {
-                            return value.toFixed(2);
-                        } else {
-                            return value;
-                        }
+                    font: { weight: 'bold' },
+                    formatter: function(value) {
+                        return typeof value === 'number' ? value.toFixed(2) : value;
                     }
                 }
             }
@@ -252,4 +233,66 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.error('Chart.js or ChartDataLabels plugin not loaded');
     }
+
+    document.getElementById('share-button').addEventListener('click', () => {
+        const baseUrl = window.location.origin + window.location.pathname;
+        const shareUrl = `${baseUrl}?results=${btoa(JSON.stringify(results))}`;
+        const sharePopup = document.getElementById('share-popup');
+        sharePopup.style.display = 'block';
+
+        document.getElementById('copy-url-button').addEventListener('click', () => {
+            navigator.clipboard.writeText(shareUrl).then(() => {
+                alert('URL이 복사되었습니다.');
+            }).catch(err => {
+                console.error('URL 복사 실패', err);
+            });
+        });
+
+        document.getElementById('save-image-button').addEventListener('click', async () => {
+            const backButton = document.getElementById('back-to-index-button');
+            const shareButton = document.getElementById('share-button');
+            const sharePopup = document.getElementById('share-popup');
+    
+            // 버튼들을 숨기기
+            backButton.style.display = 'none';
+            shareButton.style.display = 'none';
+            sharePopup.style.display = 'none';
+    
+            // DOM 업데이트를 위한 지연
+            await new Promise(resolve => setTimeout(resolve, 100));
+    
+            try {
+                const canvas = await html2canvas(document.body, {
+                    ignoreElements: (element) => {
+                        // 특정 요소들을 캡처에서 제외
+                        return element.id === 'back-to-index-button' || 
+                               element.id === 'share-button' || 
+                               element.id === 'share-popup';
+                    }
+                });
+    
+                // 이미지 다운로드
+                const link = document.createElement('a');
+                link.download = 'hexaco_result.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            } catch (error) {
+                console.error('이미지 캡처 중 오류 발생:', error);
+                alert('이미지 저장 중 오류가 발생했습니다.');
+            } finally {
+                // 버튼들을 다시 표시
+                backButton.style.display = 'block';
+                shareButton.style.display = 'block';
+            }
+        });
+    });
+
+    document.getElementById('close-share-popup').addEventListener('click', () => {
+        document.getElementById('share-popup').style.display = 'none';
+    });
+
+    document.getElementById('back-to-index-button').addEventListener('click', () => {
+        window.location.href = 'index.html';
+    });
 });
+

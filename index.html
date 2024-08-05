@@ -138,6 +138,12 @@
     </div>
     <script>
         function startTest() {
+            // Update test count
+            let testCount = localStorage.getItem('testCount') ? parseInt(localStorage.getItem('testCount')) : 0;
+            testCount++;
+            localStorage.setItem('testCount', testCount);
+            document.getElementById('testCount').innerText = testCount;
+
             window.location.href = "test.html";
         }
 
@@ -156,6 +162,39 @@
 
         setInterval(changeBackgroundImage, 5000); // Change image every 5 seconds
         document.addEventListener('DOMContentLoaded', changeBackgroundImage);
+
+        // Visitor count script
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize visitor counts
+            let totalVisitors = localStorage.getItem('totalVisitors') ? parseInt(localStorage.getItem('totalVisitors')) : 0;
+            let todayVisitors = localStorage.getItem('todayVisitors') ? parseInt(localStorage.getItem('todayVisitors')) : 0;
+            let testCount = localStorage.getItem('testCount') ? parseInt(localStorage.getItem('testCount')) : 0;
+
+            // Update total visitors
+            totalVisitors++;
+            localStorage.setItem('totalVisitors', totalVisitors);
+
+            // Get today's date
+            const today = new Date().toLocaleDateString();
+
+            // Check if today's date is stored in local storage
+            const storedDate = localStorage.getItem('storedDate');
+
+            if (storedDate === today) {
+                // Same day, increment today's visitors
+                todayVisitors++;
+            } else {
+                // New day, reset today's visitors
+                todayVisitors = 1;
+                localStorage.setItem('storedDate', today);
+            }
+            localStorage.setItem('todayVisitors', todayVisitors);
+
+            // Display the visitor counts
+            document.getElementById('totalVisitors').innerText = totalVisitors;
+            document.getElementById('todayVisitors').innerText = todayVisitors;
+            document.getElementById('testCount').innerText = testCount;
+        });
     </script>
 </body>
 </html>

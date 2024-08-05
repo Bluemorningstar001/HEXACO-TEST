@@ -22,12 +22,16 @@
         <h1>HEXACO 성격 검사 결과</h1>
         <div id="result-container"></div>
         <canvas id="hexacoChart" style="max-width: 600px; max-height: 400px;"></canvas>
-        <button id="share-button">
-            <img src="images/share.png" alt="공유하기 아이콘" class="share-icon"> 공유하기
-        </button>
+        <div class="button-container">
+            <button id="share-button">
+                <img src="images/share.png" alt="공유하기 아이콘" class="share-icon"> 공유하기
+            </button>
+            <button id="back-to-index-button" class="back-button">메인 페이지로 돌아가기</button>
+        </div>
         <div id="share-popup" class="popup">
             <button id="copy-url-button">URL 복사</button>
             <button id="save-image-button">이미지 저장</button>
+            <button id="close-share-popup">닫기</button>
         </div>
     </div>
     <script src="results.js"></script>

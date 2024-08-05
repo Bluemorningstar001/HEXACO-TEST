@@ -198,3 +198,266 @@ h1.main-title {
         font-size: 0.9em;
     }
 }
+
+.background {
+    background: url('images/background.png') no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
+    background: linear-gradient(to bottom, rgb(254, 251, 231), rgb(254, 251, 231));
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1.test-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+    background: rgb(96, 183, 189); /* 박스 배경색 */
+    padding: 10px; /* 박스 내부 여백 */
+    border-radius: 10px; /* 박스 모서리 둥글게 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 박스 그림자 */
+    width: 50%; /* 박스 가로 길이 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+    color: rgb(254, 251, 231); /* 글자 색상 */
+}
+
+.question {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.question p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.radio-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.label-text {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+    color: #000; /* 기본 텍스트 색상 */
+}
+
+.label-text span:first-child {
+    color: rgb(147, 195, 195); /* "그렇다" 텍스트 색상 */
+}
+
+.label-text span:last-child {
+    color: rgb(239, 189, 114); /* "그렇지 않다" 텍스트 색상 */
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.radio-buttons label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.radio-buttons input[type="radio"] {
+    display: none;
+}
+
+.radio-buttons .circle {
+    border-radius: 50%;
+    border: 2px solid; /* 테두리 색상 */
+    display: inline-block;
+    margin: 0 5px;
+    transition: background-color 0.3s, border-color 0.3s;
+    background: none; /* 기본 배경 제거 */
+}
+
+.radio-buttons .button-container label:nth-child(1) .circle {
+    width: 24px;
+    height: 24px;
+    border-color: rgb(147, 195, 195); /* "그렇다" 테두리 색상 */
+}
+
+.radio-buttons .button-container label:nth-child(2) .circle {
+    width: 22px;
+    height: 22px;
+    border-color: rgb(163, 182, 179); /* 그라데이션 중간 테두리 색상 */
+}
+
+.radio-buttons .button-container label:nth-child(3) .circle {
+    width: 20px;
+    height: 20px;
+    border-color: rgb(178, 169, 162); /* 그라데이션 중간 테두리 색상 */
+}
+
+.radio-buttons .button-container label:nth-child(4) .circle {
+    width: 18px;
+    height: 18px;
+    border-color: rgb(195, 156, 145); /* 그라데이션 중간 테두리 색상 */
+}
+
+.radio-buttons .button-container label:nth-child(5) .circle {
+    width: 20px;
+    height: 20px;
+    border-color: rgb(211, 143, 128); /* 그라데이션 중간 테두리 색상 */
+}
+
+.radio-buttons .button-container label:nth-child(6) .circle {
+    width: 22px;
+    height: 22px;
+    border-color: rgb(227, 130, 111); /* 그라데이션 중간 테두리 색상 */
+}
+
+.radio-buttons .button-container label:nth-child(7) .circle {
+    width: 24px;
+    height: 24px;
+    border-color: rgb(239, 189, 114); /* "그렇지 않다" 테두리 색상 */
+}
+
+.radio-buttons input[type="radio"]:checked + .circle {
+    background-color: currentColor;
+    border-color: currentColor;
+}
+
+.radio-buttons .label-text span {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.radio-buttons label span {
+    display: none;
+}
+
+.radio-buttons label:not(:first-child):not(:last-child) span {
+    display: none;
+}
+
+#next-button {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    background: rgb(147, 195, 195);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(3, 8, 41, 0.5);
+    transition: background 0.3s ease;
+    margin-top: 20px;
+}
+
+#next-button:hover {
+    background: rgb(239, 189, 114);
+}
+
+.results {
+    margin-top: 20px;
+}
+
+.results h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.results p {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+    h1.main-title {
+        font-size: 2em;
+    }
+    
+    .start-button {
+        font-size: 1.2em;
+        padding: 8px 25px;
+    }
+    
+    h1.test-title {
+        font-size: 1.5em;
+        width: 80%;
+    }
+    
+    .question p {
+        font-size: 1em;
+    }
+    
+    .radio-buttons .label-text span {
+        font-size: 12px;
+    }
+    
+    #next-button {
+        font-size: 1em;
+        padding: 8px 15px;
+    }
+    
+    .results h2 {
+        font-size: 1.2em;
+    }
+    
+    .results p {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    h1.main-title {
+        font-size: 1.5em;
+    }
+    
+    .start-button {
+        font-size: 1em;
+        padding: 5px 20px;
+    }
+    
+    h1.test-title {
+        font-size: 1.2em;
+        width: 100%;
+    }
+    
+    .question p {
+        font-size: 0.9em;
+    }
+    
+    .radio-buttons .label-text span {
+        font-size: 10px;
+    }
+    
+    #next-button {
+        font-size: 0.9em;
+        padding: 5px 10px;
+    }
+    
+    .results h2 {
+        font-size: 1em;
+    }
+    
+    .results p {
+        font-size: 0.9em;
+    }
+}

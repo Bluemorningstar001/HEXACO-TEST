@@ -75,6 +75,14 @@ button:hover {
     background-color: #69beaa;
 }
 
+.back-button {
+    background-color: #268876;
+}
+
+.back-button:hover {
+    background-color: #d96716;
+}
+
 .share-icon {
     width: 20px;
     height: 20px;
@@ -127,4 +135,15 @@ button:hover {
     height: 100%;
     background: rgba(0,0,0,0.5);
     z-index: 999;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.button-container button {
+    flex: 0 1 auto;
 }
