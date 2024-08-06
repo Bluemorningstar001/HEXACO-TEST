@@ -130,71 +130,61 @@
             성격 테스트는 자기 이해와 성장을 위한 중요한 도구입니다. 이를 통해 자신의 성격 특성을 이해하고, 개인적 성장과 발전을 도모하며, 타인과의 관계를 개선할 수 있습니다. 또한, 직업 선택과 커리어 개발에 있어 중요한 정보를 제공하여, 보다 만족스러운 삶을 살아가는 데 도움을 줍니다. 성격 테스트를 통해 자신의 성격을 이해하고, 이를 바탕으로 더 나은 삶을 살아가세요.
         </p>
     </div>
-    <div class="stats">
-        <p>테스트 횟수: <span id="testCount">0</span></p>
-        <p>오늘 방문자: <span id="todayVisitors">0</span></p>
-        <p>전체 방문자: <span id="totalVisitors">0</span></p>
-        <p>Release: 24.08.05</p>
-    </div>
-    <script>
-        function startTest() {
-            // Update test count
-            let testCount = localStorage.getItem('testCount') ? parseInt(localStorage.getItem('testCount')) : 0;
-            testCount++;
-            localStorage.setItem('testCount', testCount);
-            document.getElementById('testCount').innerText = testCount;
+</div>
+<div class="stats">
+    <p>테스트 횟수: <span id="testCount">0</span></p>
+    <p>오늘 방문자: <span id="todayVisitors">0</span></p>
+    <p>전체 방문자: <span id="totalVisitors">0</span></p>
+    <p>Release: 24.08.05</p>
+</div>
+<script>
+    async function fetchVisitorData() {
+        const response = await fetch('/api/visitor');
+        return await response.json();
+    }
 
-            window.location.href = "test.html";
-        }
-
-        // Slideshow script
-        const images = [];
-        for (let i = 1; i <= 10; i++) {
-            images.push(`images/${i}.jpg`);
-        }
-        let currentImageIndex = 0;
-
-        function changeBackgroundImage() {
-            const slideshowImage = document.querySelector('.slideshow-image');
-            slideshowImage.style.backgroundImage = `url('${images[currentImageIndex]}')`;
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-        }
-
-        setInterval(changeBackgroundImage, 5000); // Change image every 5 seconds
-        document.addEventListener('DOMContentLoaded', changeBackgroundImage);
-
-        // Visitor count script
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize visitor counts
-            let totalVisitors = localStorage.getItem('totalVisitors') ? parseInt(localStorage.getItem('totalVisitors')) : 0;
-            let todayVisitors = localStorage.getItem('todayVisitors') ? parseInt(localStorage.getItem('todayVisitors')) : 0;
-            let testCount = localStorage.getItem('testCount') ? parseInt(localStorage.getItem('testCount')) : 0;
-
-            // Update total visitors
-            totalVisitors++;
-            localStorage.setItem('totalVisitors', totalVisitors);
-
-            // Get today's date
-            const today = new Date().toLocaleDateString();
-
-            // Check if today's date is stored in local storage
-            const storedDate = localStorage.getItem('storedDate');
-
-            if (storedDate === today) {
-                // Same day, increment today's visitors
-                todayVisitors++;
-            } else {
-                // New day, reset today's visitors
-                todayVisitors = 1;
-                localStorage.setItem('storedDate', today);
-            }
-            localStorage.setItem('todayVisitors', todayVisitors);
-
-            // Display the visitor counts
-            document.getElementById('totalVisitors').innerText = totalVisitors;
-            document.getElementById('todayVisitors').innerText = todayVisitors;
-            document.getElementById('testCount').innerText = testCount;
+    async function updateVisitorData(type) {
+        await fetch('/api/visitor', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ type }),
         });
-    </script>
+    }
+
+    async function startTest() {
+        await updateVisitorData('test');
+        const data = await fetchVisitorData();
+        document.getElementById('testCount').innerText = data.testCount;
+
+        window.location.href = "test.html";
+    }
+
+    document.addEventListener('DOMContentLoaded', async function() {
+        await updateVisitorData('visit');
+        const data = await fetchVisitorData();
+
+        document.getElementById('totalVisitors').innerText = data.totalVisitors;
+        document.getElementById('todayVisitors').innerText = data.todayVisitors;
+        document.getElementById('testCount').innerText = data.testCount;
+    });
+
+    // Slideshow script
+    const images = [];
+    for (let i = 1; i <= 10; i++) {
+        images.push(`images/${i}.jpg`);
+    }
+    let currentImageIndex = 0;
+
+    function changeBackgroundImage() {
+        const slideshowImage = document.querySelector('.slideshow-image');
+        slideshowImage.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+    }
+
+    setInterval(changeBackgroundImage, 5000); // Change image every 5 seconds
+    document.addEventListener('DOMContentLoaded', changeBackgroundImage);
+</script>
 </body>
 </html>
