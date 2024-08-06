@@ -48,8 +48,7 @@
     <link rel="icon" href="https://hexacotest.site/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="style.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2988937021017804"
-     crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2988937021017804" crossorigin="anonymous"></script>
     <script>
       (adsbygoogle = window.adsbygoogle || []).push({
         google_ad_client: "ca-pub-2988937021017804",
@@ -104,10 +103,8 @@
         <p>
             경험에 대한 개방성 요소는 새로운 경험과 아이디어에 대한 수용성을 평가합니다. 높은 점수를 받은 사람들은 창의적이고, 호기심이 많으며, 다양한 경험을 즐깁니다. 이 특성은 개인의 창의성과 지적 호기심을 반영하며, 높은 점수를 가진 사람들은 새로운 아이디어와 경험에 열려 있습니다. 반면, 낮은 점수를 가진 사람들은 보수적이고, 익숙한 것에 안주하려는 경향이 있습니다. 이 특성은 학습과 문제 해결 능력에 영향을 미칩니다.
         </p>
-        <p></p>
         <h2>성격 테스트를 하고 나와 비슷한 유명인을 만나보세요</h2>
         <img src="images/character.gif" alt="Character" class="character-image">
-        </p>
         <h2>MBTI와 HEXACO TEST의 차이</h2>
         <img src="images/MBTI.jpg" alt="MBTI" class="description-image">
         <p>
@@ -130,61 +127,56 @@
             성격 테스트는 자기 이해와 성장을 위한 중요한 도구입니다. 이를 통해 자신의 성격 특성을 이해하고, 개인적 성장과 발전을 도모하며, 타인과의 관계를 개선할 수 있습니다. 또한, 직업 선택과 커리어 개발에 있어 중요한 정보를 제공하여, 보다 만족스러운 삶을 살아가는 데 도움을 줍니다. 성격 테스트를 통해 자신의 성격을 이해하고, 이를 바탕으로 더 나은 삶을 살아가세요.
         </p>
     </div>
-</div>
-<div class="stats">
-    <p>테스트 횟수: <span id="testCount">0</span></p>
-    <p>오늘 방문자: <span id="todayVisitors">0</span></p>
-    <p>전체 방문자: <span id="totalVisitors">0</span></p>
-    <p>Release: 24.08.05</p>
-</div>
-<script>
-    async function fetchVisitorData() {
-        const response = await fetch('/api/visitor');
-        return await response.json();
-    }
+    <div class="stats">
+        <p>테스트 횟수: <span id="testCount">0</span></p>
+        <p>Release: 24.08.05</p>
+    </div>
+    <script>
+        async function fetchVisitorData() {
+            const response = await fetch('/api/visitor');
+            return await response.json();
+        }
 
-    async function updateVisitorData(type) {
-        await fetch('/api/visitor', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ type }),
+        async function updateVisitorData(type) {
+            await fetch('/api/visitor', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ type }),
+            });
+        }
+
+        async function startTest() {
+            await updateVisitorData('test');
+            const data = await fetchVisitorData();
+            document.getElementById('testCount').innerText = data.testCount;
+
+            window.location.href = "test.html";
+        }
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            await updateVisitorData('visit');
+            const data = await fetchVisitorData();
+
+            document.getElementById('testCount').innerText = data.testCount;
         });
-    }
 
-    async function startTest() {
-        await updateVisitorData('test');
-        const data = await fetchVisitorData();
-        document.getElementById('testCount').innerText = data.testCount;
+        // Slideshow script
+        const images = [];
+        for (let i = 1; i <= 10; i++) {
+            images.push(`images/${i}.jpg`);
+        }
+        let currentImageIndex = 0;
 
-        window.location.href = "test.html";
-    }
+        function changeBackgroundImage() {
+            const slideshowImage = document.querySelector('.slideshow-image');
+            slideshowImage.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+        }
 
-    document.addEventListener('DOMContentLoaded', async function() {
-        await updateVisitorData('visit');
-        const data = await fetchVisitorData();
-
-        document.getElementById('totalVisitors').innerText = data.totalVisitors;
-        document.getElementById('todayVisitors').innerText = data.todayVisitors;
-        document.getElementById('testCount').innerText = data.testCount;
-    });
-
-    // Slideshow script
-    const images = [];
-    for (let i = 1; i <= 10; i++) {
-        images.push(`images/${i}.jpg`);
-    }
-    let currentImageIndex = 0;
-
-    function changeBackgroundImage() {
-        const slideshowImage = document.querySelector('.slideshow-image');
-        slideshowImage.style.backgroundImage = `url('${images[currentImageIndex]}')`;
-        currentImageIndex = (currentImageIndex + 1) % images.length;
-    }
-
-    setInterval(changeBackgroundImage, 5000); // Change image every 5 seconds
-    document.addEventListener('DOMContentLoaded', changeBackgroundImage);
-</script>
+        setInterval(changeBackgroundImage, 5000); // Change image every 5 seconds
+        document.addEventListener('DOMContentLoaded', changeBackgroundImage);
+    </script>
 </body>
 </html>
